@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User List</title>
+</head>
+<body>
+<table align="center">
+ <tr>
+  <th>Author id</th>
+  <th>Author Name</th>
+  <th>Author email</th>
+ </tr>
+ <tr th:each="data:${alist}">
+ <td th:text=${data.auid}></td>
+ <td th:text=${data.auname}></td>
+ <td th:text=${data.auemail}></td>
+   <td><a href="edit/${}">Edit Author</a> || <a href="delauthor">Delete Author</a></td>
+
+ </tr>
+ 
+</table>
+
+<table align="center">
+<tr>
+ <th>Book title id</th>
+ <th>Book id</th>
+  <th>Author 1 id</th>
+ <th>Author 2 id</th>
+ <th>Author 3 id</th>
+ <th>Publisher id</th>
+  <th>Price</th>
+
+
+</tr>
+<tr th:each="book:${blist}">
+  <td th:text=${book.btid}></td>
+  <td th:text=${book.title}></td>
+    <td th:text=${book.auid1}></td>
+  <td th:text=${book.auid2}></td>
+  <td th:text=${book.auid3}></td>
+  <td th:text=${book.pubid}></td>
+  <td th:text=${book.price}></td>
+  <td><a href="{editbooktitle?id=${book.btid}">Edit Book Title</a> || <a href="deletebooktitle?id=${book.btid}">Delete Book Title</a></td>
+
+</tr>
+
+</table>
+
+<table align="center">
+<tr>
+ <th>Publisher Id</th>
+ <th>Publisher Name</th>
+  <th>Publisher Email</th>
+ <th>Publisher Address</th>
+ 
+</tr>
+<tr th:each="pub:${plist}">
+  <td th:text=${pub.pubid}></td>
+  <td th:text=${pub.pname}></td>
+    <td th:text=${pub.pemail}></td>
+  <td th:text=${pub.address}></td>
+  <td><a href="editpublisher?id=${pub.pubid}">Edit Publisher</a> || <a href="deletepublisher?id=${pub.pubid}">Delete Publisher</a></td>
+</tr>
+</body>
+</html>
