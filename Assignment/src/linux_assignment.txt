@@ -1,0 +1,167 @@
+linux commands assignement
+1. create two files one is forr ietem & category join both files and store  them in new file . join both files on basiss of catid.
+Ans: cat> item.text
+1.potato
+2.pants
+3.icecram
+4.milk
+5.slipper
+
+cat>category.text
+1.vegetables 300
+2.shoppingcart 500
+3. cold things 80
+4.dairy 120
+5.onlinekart 800
+
+join items.text categeory.text>combine.text
+1 potato  vegetables 300
+2 pants  shoppingcart 500
+3 icecram  cold things 80
+4 milk  dairy 120
+5 slipper    onlinekart 80
+ 
+
+2.total words in file :
+ans: wc -w combine.text
+wc -w item.text
+wc -w categeory.text
+
+
+3)to print all price from the file
+awk '{print $4}' combined.text
+
+
+4)to print all price from the file in sorted ordr:
+
+awk '{print $4}' combined.text | sort-n
+
+
+5 middle price from the list of price
+
+awk NR ==3,{print NR,$0}' combined.text
+
+
+6 maximum price and minimum price  :-
+ans -
+minimum price -vivek@vivek-VirtualBox:~/new_assignment/demo$ 
+awk '{print $4}' combine.text|sort|head -4 | tail -1
+80
+
+maximum price == vivek@vivek-VirtualBox:~/new_assignment/demo$ awk '{print $4}' combine.text|sort -r -n |head -n 1
+800
+
+
+7)search item name and print the line
+
+ans :grep  "potato" items.text
+
+
+
+8)search item name nd print those line  which did not matched:
+
+
+grep -v "milk" items.text
+grep -v "m" items.text
+
+9)dupiclates the lines for items :-
+ $ sort item1.text |uniq --count --repeated
+      2 purnpoli
+
+
+10) cretae file markes and  student .join them
+
+ans : cat>stud.text
+ 1.vivek
+ 2.satish
+3.ashish
+4.ram
+5.shyam
+cat> marks.text
+1.78 p
+2.88 p
+3 o ab
+4 99 p
+5 45 p
+
+join stud.text marks.text >cat>exam.text
+
+1.vivek   78 p
+ 2.satish  88 p 
+3.ram  0   ab
+4.shyam     99  p
+5.radha   45  p
+
+after ruuning
+
+vivek@vivek-VirtualBox:~/new_assignment/demo$ join stud.text marks.text 
+1 vivek 78 p
+2 satish 88 p
+3 ram 0 ab
+4 shaym 99 p
+5 radha 45 p
+vivek@vivek-VirtualBox:~/new_assignment/demo$ join stud.text marks.text >exam.text
+vivek@vivek-VirtualBox:~/new_assignment/demo$ cat exam.text
+1 vivek 78 p
+2 satish 88 p
+3 ram 0 ab
+4 shaym 99 p
+5 radha 45 p
+
+
+
+11) students attempt/attend the exam 
+ans:
+grep -c"p" exam.text
+
+/new_assignment/demo$ grep -c "p" exam.text
+4
+
+
+
+12) absent in exam :- 
+  grep -c"ab" exam.text
+
+/new_assignment/demo$ grep -c "ab" exam.text
+1
+
+
+13 maximum marks 
+
+sort -k 3n exam.text | tail -1
+
+
+~/new_assignment/demo$ sort -k 3n exam.text | tail -1
+4 shaym 99 p
+
+
+14)minimum marks :
+
+sort -k 3n exam.text|grep -v "ab" |head -1  // showing wrong result
+
+new_assignment/demo$ sort -k 3n exam.text | head -1 // right anns
+3 ram 0 ab
+
+
+15) print the adrees and name of student
+
+ans - 
+adress.text
+1.mumbai
+2.hyderabad
+3.indore
+4.bhopal
+5.ujjain
+assignment/demo$ join exam.text address.text 
+ew_assignment/demo$ join exam.text address.text >completeinfo.text
+vivek@vivek-VirtualBox:~/new_assignment/demo$ cat completeinfo.text
+1 vivek 78 p mumbai
+2 satish 88 p hyderabad
+3 ram 0 ab indore
+4 shaym 99 p bhopal
+5 radha 45 p ujjain
+
+
+join exam.text address.text> completeinfo.text
+cat completeinfo.text
+awk'{print $2,$5}'. completeinfo.text
